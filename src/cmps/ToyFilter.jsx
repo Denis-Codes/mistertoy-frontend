@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
-import { useEffectUpdate } from "../customHooks/useEffectUpdate.js"
+// import { useEffectUpdate } from "../customHooks/useEffectUpdate.js"
 
 
 export function ToyFilter({ filterBy, onSetFilter }) {

@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { toyService } from '../services/toy.service.js'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+// import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, removeToyOptimistic, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
-import { ADD_CAR_TO_CART } from '../store/reducers/toy.reducer.js'
+import { ADD_TOY_TO_CART } from '../store/reducers/toy.reducer.js'
 
 export function ToyIndex() {
 
@@ -64,7 +64,7 @@ export function ToyIndex() {
 
     function addToCart(toy) {
         console.log(`Adding ${toy.vendor} to Cart`)
-        dispatch({ type: ADD_CAR_TO_CART, toy })
+        dispatch({ type: ADD_TOY_TO_CART, toy })
         showSuccessMsg('Added to Cart')
     }
 
