@@ -4,7 +4,7 @@ import { utilService } from './util.service'
 const BASE_URL = 'toy/'
 const STORAGE_KEY = 'toyDB'
 
-const labels = [
+export const labels = [
   'On wheels',
   'Box game',
   'Art',
