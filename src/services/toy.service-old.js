@@ -1,28 +1,30 @@
-
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import { userService } from './user.service-old.js'
 
 const STORAGE_KEY = 'toyDB'
+const MAX_PRICE = 1000000
+_createRandomToys()
 
 export const toyService = {
     query,
     getById,
     save,
     remove,
-    getEmptyToy,
-    getDefaultFilter
+    getEmptyToy
+    
 }
 
 function query(filterBy = {}) {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
+            if (!filterBy.maxPrice) filterBy.maxPrice = MAX_PRICE
             const regExp = new RegExp(filterBy.txt, 'i')
             return toys.filter(toy =>
-                regExp.test(toy.vendor) &&
-                toy.price <= filterBy.maxPrice
+                (regExp.test(toy.vendor) || regExp.test(toy.name)) &&
+                toy.price <= filterBy.maxPrice &&
+                (filterBy.inStock === undefined || toy.inStock === filterBy.inStock)
             )
         })
 }
@@ -36,7 +38,6 @@ function remove(toyId) {
     return storageService.remove(STORAGE_KEY, toyId)
 }
 
-
 function save(toy) {
     if (toy._id) {
         return storageService.put(STORAGE_KEY, toy)
@@ -47,19 +48,64 @@ function save(toy) {
     }
 }
 
+function _createRandomToys() {
+    let toys = utilService.loadFromStorage(STORAGE_KEY)
+    if (!toys || !toys.length) {
+        toys = []
+        for (var i = 0; i < 10; i++) {
+            toys.push(getRandomToy())
+        }
+    }
+    utilService.saveToStorage(STORAGE_KEY, toys)
+}
+
+function getRandomToy() {
+    return {
+        _id: utilService.makeId(),
+        name: _getRandomName(),
+        price: _getRandomPrice(),
+        labels: _getRandomLabels(),
+        createdAt: Date.now(),
+        inStock: Math.random() < 0.5,
+    }
+}
+function _getRandomName() {
+    const names = ['Teddy Bear', 'Action Figure', 'Doll', 'Lego Set', 'Puzzle', 'Race Car', 'Drone', 'Board Game']
+    return names[Math.floor(Math.random() * names.length)]
+}
+
+function _getRandomPrice(min = 10, max = 100) {
+    return (Math.random() * (max - min) + min).toFixed(2)
+}
+
+function _getRandomLabels() {
+    const allLabels = ['Educational', 'Outdoor', 'Indoor', 'Electronic', 'DIY', 'Creative', 'Sports', 'Collectible']
+    const numLabels = Math.floor(Math.random() * allLabels.length) + 1
+    const labels = []
+    while (labels.length < numLabels) {
+        const label = allLabels[Math.floor(Math.random() * allLabels.length)]
+        if (!labels.includes(label)) {
+            labels.push(label)
+        }
+    }
+    return labels
+}
+
 function getEmptyToy() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-        speed: utilService.getRandomIntInclusive(75, 200),
+        name: '',
+        price: '',
+        labels: [],
+        inStock: true,
     }
 }
 
-function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+// MODEL
+const toy = {
+    _id: 't101',
+    name: 'Talking Doll',
+    price: 123,
+    labels: ['Doll', 'Battery Powered', 'Baby'],
+    createdAt: 1631031801011,
+    inStock: true,
 }
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
-
-

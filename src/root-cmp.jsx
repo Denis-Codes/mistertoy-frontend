@@ -4,10 +4,10 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-// import { AppHeader } from './cmps/AppHeader.jsx'
-// import { AppFooter } from './cmps/AppFooter.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
 
-// import { HomePage } from './pages/HomePage.jsx'
+import { HomePage } from './pages/HomePage.jsx'
 // import { AboutUs } from './pages/AboutUs.jsx'
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { store } from './store/store.js'
@@ -15,7 +15,7 @@ import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 // import { UserDetails } from './pages/UserDetails.jsx'
 
-// import "../src/assets/style/main.css"
+import "../src/assets/style/main.css"
 
 export function App() {
 
@@ -23,10 +23,10 @@ export function App() {
     <Provider store={store}>
       <Router>
         <section className="app">
-          {/* <AppHeader /> */}
+          <AppHeader />
           <main className='main-layout'>
             <Routes>
-              {/* <Route element={<HomePage />} path="/" /> */}
+              <Route element={<HomePage />} path="/" />
               {/* <Route element={<AboutUs />} path="/about" /> */}
               <Route element={<ToyIndex />} path="/toy" />
               <Route element={<ToyEdit />} path="/toy/edit" />
@@ -35,7 +35,7 @@ export function App() {
               {/* <Route element={<UserDetails />} path="/user/:userId" /> */}
             </Routes>
           </main>
-          {/* <AppFooter /> */}
+          <AppFooter />
         </section>
       </Router>
     </Provider>

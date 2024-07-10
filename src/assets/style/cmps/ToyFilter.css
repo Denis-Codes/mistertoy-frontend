@@ -1,0 +1,80 @@
+/* .toy-filter {
+    background-color: var(--clr2bg);
+    padding: 1em;
+} */
+
+.toy-filter {
+    background-color: var(--clr2bg);
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toy-filter h2 {
+    margin-bottom: 1em;
+    color: var(--clr1);
+}
+
+.toy-filter form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.toy-filter label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: var(--clr2);
+}
+
+.toy-filter input,
+.toy-filter select {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+/* 
+.toy-filter input[type="number"] {
+    -moz-appearance: textfield;
+} */
+
+.toy-filter input[type="number"]::-webkit-outer-spin-button,
+.toy-filter input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.toy-filter select[multiple] {
+    height: auto;
+    min-height: 100px;
+}
+
+.label-multi-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.label-multi-select label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3em 0.6em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.label-multi-select label.selected {
+    background-color: var(--clr1);
+    color: white;
+}
+
+.label-multi-select input[type="checkbox"] {
+    margin-right: 0.5em;
+    width: auto;
+}

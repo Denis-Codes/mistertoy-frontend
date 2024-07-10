@@ -13,9 +13,9 @@ export function ToyList({ toys, onRemoveToy, onEditToy, addToCart }) {
                         <button onClick={() => onEditToy(toy)}>Edit</button>
                     </div>
 
-                    <button className="buy" onClick={() => addToCart(toy)}>
+                    {/* <button className="buy" onClick={() => addToCart(toy)}>
                         Add to Cart
-                    </button>
+                    </button> */}
                 </li>)}
         </ul>
     )
