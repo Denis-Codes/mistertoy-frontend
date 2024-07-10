@@ -1,24 +1,18 @@
-// const Router = ReactRouterDOM.BrowserRouter
-// const { Route, Routes } = ReactRouterDOM
-// const { Provider } = ReactRedux
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import "../src/assets/style/main.css"
 
+import { store } from './store/store.js'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
-
 import { HomePage } from './pages/HomePage.jsx'
 // import { AboutUs } from './pages/AboutUs.jsx'
 import { ToyIndex } from './pages/ToyIndex.jsx'
-import { store } from './store/store.js'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 // import { UserDetails } from './pages/UserDetails.jsx'
 
-import "../src/assets/style/main.css"
-
 export function App() {
-
   return (
     <Provider store={store}>
       <Router>
@@ -39,7 +33,6 @@ export function App() {
         </section>
       </Router>
     </Provider>
-
   )
 }
 

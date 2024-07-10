@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { CHANGE_BY } from "../store/reducers/user.reducer"
-
 import logo from "../assets/img/logo.png"
 
 export function HomePage() {
