@@ -72,8 +72,10 @@ export function ToyIndex() {
         <div>
             <h3>Toys App</h3>
             <main>
-                <Link to="/toy/edit">Add Toy</Link>
+                <div className="add-toys-btns">
+                <button><Link to="/toy/edit">Add Toy</Link></button>
                 <button className='add-btn' onClick={onAddToy}>Add Random Toy</button>
+                </div>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 {!isLoading
                     ? <ToyList
