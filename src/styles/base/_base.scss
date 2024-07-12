@@ -9,7 +9,7 @@
 
 html {
     font-family: Bahnschrift, sans-serif;
-    color: $clr3;
+    color: $clr5;
     line-height: 1.8;
     line-height: lh(26px);
 
@@ -20,7 +20,7 @@ html {
 
 body {
     margin: 0;
-    background-color: $clr6;
+    background-color: $clr4;
 
     @include for-normal-layout {
         &.sidebar-open {
@@ -48,7 +48,7 @@ h2 {
     font-size: em(16px);
     margin: em(63px) 0;
     grid-area: title;
-    color: $clr1;
+    // color: $clr1;
     text-transform: uppercase;
     @include type(boldCondensed);
 }

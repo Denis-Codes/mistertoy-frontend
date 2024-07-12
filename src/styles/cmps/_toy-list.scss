@@ -15,4 +15,22 @@
         padding: 0.65em;
         width: rem(200px)
     }
+
+    .toy-preview {
+        border: $clr5 solid 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+
+        // img {
+        //     max-width: 100%; 
+        //     height: auto; 
+        // }
+
+        // p {
+        //     margin: auto;
+        // }
+    }
 }
