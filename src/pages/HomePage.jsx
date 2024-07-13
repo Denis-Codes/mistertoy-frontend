@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import logo from "../assets/img/logo.png"
+import HERO_IMG from "../assets/img/HERO_IMG.jpg"
 
 export function HomePage() {
     // TODO: move to storeState
@@ -27,7 +27,7 @@ export function HomePage() {
                     changeCount(10)
                 }}>+10</button>
             </h2 > */}
-            {/* <img src={logo} className="img-homepage" /> */}
+            <img src={HERO_IMG} className="img-homepage" />
         </section >
     )
 }

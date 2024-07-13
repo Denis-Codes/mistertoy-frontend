@@ -63,7 +63,7 @@
 //           </button>
 //         )
 //       })}
-      
+
 //       <div className="map" style={{ height: '60vh', width: '100%' }}>
 //         <GoogleMapReact
 //           bootstrapURLKeys={{ key: API_KEY }}
@@ -96,7 +96,7 @@ function Marker() {
   return (
     <div className="branch-img">
       {/* <img src={logoUrl} /> */}
-      { <p>❤️</p> }
+      {<p>❤️</p>}
     </div>
   )
 }
@@ -140,22 +140,8 @@ export function Map() {
 
   return (
     <div>
-      <Box display="flex" justifyContent="center" flexWrap="wrap" gap={2} mb={2}>
-        {branches.map(branch => (
-          <Button
-            key={branch.city}
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              setCoordinates(branch.position)
-              setZoom(12)
-            }}
-          >
-            {branch.city}
-          </Button>
-        ))}
-      </Box>
-      
+
+
       <div className="map" style={{ height: '60vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: API_KEY }}
@@ -172,6 +158,22 @@ export function Map() {
           ))}
         </GoogleMapReact>
       </div>
+      <Box display="flex" justifyContent="center" flexWrap="wrap" gap={2} mt={2} mb={2}>
+        {branches.map(branch => (
+          <Button
+            key={branch.city}
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setCoordinates(branch.position)
+              setZoom(12)
+            }}
+          >
+            {branch.city}
+          </Button>
+        ))}
+      </Box>
     </div>
+
   )
 }

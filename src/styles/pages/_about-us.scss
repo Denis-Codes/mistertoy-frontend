@@ -1,16 +1,18 @@
 .about-us {
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: 2.5rem;
     color: #333;
-    max-width: 800px;
     margin: 0 auto;
-}
+    padding: 0 1rem;
 
-.about-us h2, .about-us h3 {
-    margin-top: 20px;
-    color: #222;
-}
+    h2,
+    h3 {
+        margin-top: 20px;
+        color: #222;
+    }
 
-.about-us p {
-    margin-bottom: 15px;
+    p {
+        margin-bottom: 15px;
+    }
+
 }
