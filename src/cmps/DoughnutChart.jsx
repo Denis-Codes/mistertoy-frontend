@@ -33,12 +33,12 @@ export function DoughnutChart() {
   }
 
   function createChartData(labelCounts) {
-    const colors = ['#EEEEEE', '#686D76', '#373A40', '#DC5F00']
-    
+    const colors = ['#A31621', '#B1798C', '#B8AAC2', '#BFDBF7', '#628CAB', '#053C5E', '#125B75', '#196B81', '#1F7A8C', '#DB222A']
+
     // Generate color arrays
     const backgroundColors = Object.keys(labelCounts).map((_, index) => colors[index % colors.length] + '80') // 50% opacity
     const borderColors = Object.keys(labelCounts).map((_, index) => colors[index % colors.length])
-
+    
     return {
       labels: Object.keys(labelCounts),
       datasets: [
@@ -48,6 +48,7 @@ export function DoughnutChart() {
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
+          hoverOffset: 10
         },
       ],
     }
@@ -61,7 +62,7 @@ export function DoughnutChart() {
   }
 
   return (
-    <div style={{ width: '500px', height: '500px', margin: 'auto' }}>
+    <div style={{ width: '400px', height: '400px', margin: 'auto' }}>
       <Doughnut data={chartData} options={options} />
     </div>
   )

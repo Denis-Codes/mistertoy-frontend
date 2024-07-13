@@ -8,10 +8,13 @@
 }
 
 html {
-    font-family: Bahnschrift, sans-serif;
+    // font-family: Bahnschrift, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: $clr5;
     line-height: 1.8;
     line-height: lh(26px);
+
+    
 
     @media (max-width: 1300px) {
         font-size: 13px;
@@ -20,13 +23,23 @@ html {
 
 body {
     margin: 0;
-    background-color: $clr4;
+    background-color: $clr2;
 
     @include for-normal-layout {
         &.sidebar-open {
             overflow: hidden;
         }
     }
+
+    // .app {
+    //     display: grid;
+    //     grid-template-rows: auto 1fr auto;
+    //     grid-template-areas:
+    //       "header"
+    //       "content"
+    //       "footer";
+    //     min-height: 100vh;
+    //   }
 }
 
 h1,
@@ -41,7 +54,7 @@ h6 {
 }
 
 h1 {
-    font-size: rem(60px);
+    font-size: rem(50px);
 }
 
 h2 {

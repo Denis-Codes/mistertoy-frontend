@@ -1,71 +1,71 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { ToyFilter } from '../cmps/ToyFilter.jsx';
-import { ToyList } from '../cmps/ToyList.jsx';
-import { toyService } from '../services/toy.service.js';
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js';
-import { loadToys, removeToy, removeToyOptimistic, saveToy, setFilterBy } from '../store/actions/toy.actions.js';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { ToyList } from '../cmps/ToyList.jsx'
+import { toyService } from '../services/toy.service.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { loadToys, removeToy, removeToyOptimistic, saveToy, setFilterBy } from '../store/actions/toy.actions.js'
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
 
 export function ToyIndex() {
 
-    const dispatch = useDispatch();
-    const toys = useSelector(storeState => storeState.toyModule.toys);
-    const filterBy = useSelector(storeState => storeState.toyModule.filterBy);
-    const isLoading = useSelector(storeState => storeState.toyModule.isLoading);
+    const dispatch = useDispatch()
+    const toys = useSelector(storeState => storeState.toyModule.toys)
+    const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
+    const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
 
     useEffect(() => {
         loadToys()
             .catch(err => {
-                showErrorMsg('Cannot load toys!');
-            });
-    }, [filterBy]);
+                showErrorMsg('Cannot load toys!')
+            })
+    }, [filterBy])
 
     function onSetFilter(filterBy) {
-        setFilterBy(filterBy);
+        setFilterBy(filterBy)
     }
 
     function onRemoveToy(toyId) {
         removeToyOptimistic(toyId)
             .then(() => {
-                showSuccessMsg('Toy removed');
+                showSuccessMsg('Toy removed')
             })
             .catch(err => {
-                showErrorMsg('Cannot remove toy');
-            });
+                showErrorMsg('Cannot remove toy')
+            })
     }
 
     function onAddToy() {
-        const toyToSave = toyService.getEmptyToy();
+        const toyToSave = toyService.getEmptyToy()
         saveToy(toyToSave)
             .then((savedToy) => {
-                showSuccessMsg(`Toy added (id: ${savedToy._id})`);
+                showSuccessMsg(`Toy added (id: ${savedToy._id})`)
             })
             .catch(err => {
-                showErrorMsg('Cannot add toy');
-            });
+                showErrorMsg('Cannot add toy')
+            })
     }
 
     function onEditToy(toy) {
-        const price = +prompt('New price?');
-        const toyToSave = { ...toy, price };
+        const price = +prompt('New price?')
+        const toyToSave = { ...toy, price }
 
         saveToy(toyToSave)
             .then((savedToy) => {
-                showSuccessMsg(`Toy updated to price: $${savedToy.price}`);
+                showSuccessMsg(`Toy updated to price: $${savedToy.price}`)
             })
             .catch(err => {
-                showErrorMsg('Cannot update toy');
-            });
+                showErrorMsg('Cannot update toy')
+            })
     }
 
     function addToCart(toy) {
-        console.log(`Adding ${toy.vendor} to Cart`);
-        dispatch({ type: ADD_TOY_TO_CART, toy });
-        showSuccessMsg('Added to Cart');
+        console.log(`Adding ${toy.vendor} to Cart`)
+        dispatch({ type: ADD_TOY_TO_CART, toy })
+        showSuccessMsg('Added to Cart')
     }
 
     return (
@@ -93,5 +93,5 @@ export function ToyIndex() {
                 <hr />
             </main>
         </div>
-    );
+    )
 }

@@ -1,19 +1,82 @@
+$break-620: 620px;
+
+@mixin for-620px {
+    @media (max-width: $break-620) {
+        @content;
+    }
+}
+
 header {
     background-color: $clr3;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: rem(5px);
 
     .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-
+        margin: 0 auto;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
 
         .app-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
 
+            @include for-620px {
+                display: none;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+
+            @include for-620px {
+                display: flex;
+                position: relative;
+                z-index: 1000;
+            }
+
+            span {
+                height: 3px;
+                width: 25px;
+                background-color: #fff;
+                margin: 4px 0;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+        .dropdown {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px; // Adjust based on header height
+            right: 1.6rem;
+            background-color: $clr3;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            z-index: 999;
+
+            a {
+                padding: 10px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+                &:hover {
+                    background-color: $clr4;
+                }
+            }
+
+            &.active {
+                display: flex;
+                max-height: 500px; // Adjust based on number of items
+                opacity: 1;
+            }
         }
 
         a {
@@ -21,12 +84,24 @@ header {
             margin: 0 10px;
             padding: 10px;
             text-decoration: none;
-            color: inherit;
 
-            &:hover {
-                color: $clr6;
-            }
+            // &:hover {
+            //   color: $clr6;
+            // }
         }
+    }
 
+    h1 {
+        font-size: xx-large;
+        color: #fff;
+
+        @include for-620px {
+            font-size: 1.5rem;
+        }
+    }
+
+    .map {
+        position: relative;
+        z-index: 1;
     }
 }

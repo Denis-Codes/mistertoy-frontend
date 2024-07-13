@@ -13,7 +13,7 @@ export function AppFooter() {
                 Currently {toysLength} toys in the shop
             </h5> */}
             <p>
-                Coffeerights to all 
+            © 2023 Denis's Toy Shop. All rights reserved.
             </p>
             <UserMsg />
         </footer>

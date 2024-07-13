@@ -1,0 +1,13 @@
+.toy-edit {
+    grid-template-areas: 
+    "title ."
+    "toy-edit .";
+
+    h2 {
+        grid-area: title;
+    }
+
+    form {
+        grid-area: toy-edit;
+    }
+}

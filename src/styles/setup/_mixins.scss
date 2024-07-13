@@ -138,3 +138,72 @@
     font-variation-settings: "wght" 200;
   }
 }
+
+// Variables
+$break-680: 680px; // New breakpoint variable
+
+$break-620: 620px; // New breakpoint variable
+
+
+
+// New Mixins
+@mixin for-680px { // New mixin for 650px breakpoint
+  @media (max-width: $break-680) {
+    @content;
+  }
+}
+
+// Applying to Header
+.header-container {
+  // Other header styles
+
+  h1 {
+    // font-size: 2rem; // Default size
+
+    @include for-680px { // Applied new mixin
+      font-size: 2.5rem; // Adjusted size for smaller screens
+    }
+  }
+}
+
+// @mixin for-620px { 
+//   @media (max-width: $break-620) {
+//     @content;
+//   }
+// }
+
+
+// .header-container {
+
+
+//   h1 {
+
+
+//     @include for-620px { 
+//       font-size: 3.5rem; 
+//     }
+//   }
+// }
+
+@mixin for-620px { 
+  @media (max-width: $break-620) {
+    @content;
+  }
+}
+
+.header-container {
+  h1 {
+    @include for-620px { 
+      font-size: 3.5rem; 
+    }
+  }
+}
+
+.homepage {
+  display: flex;
+  flex-direction: row; // Default flex direction
+
+  @include for-620px {
+    flex-direction: column; // Change to column on small screens
+  }
+}
