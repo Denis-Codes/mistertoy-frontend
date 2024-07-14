@@ -9,8 +9,9 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import { ToySort } from '../cmps/ToySort.jsx'
 
-export function ToyFilter({ filterBy, onSetFilter }) {
+export function ToyFilter({ filterBy, onSetFilter, sortBy, onSetSort }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
   const debouncedOnSetFilter = useRef(utilService.debounce(onSetFilter, 300))
 
@@ -38,70 +39,71 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
   return (
     <>
-      <h2>Toys Filter</h2>
+      <h2>Toys Filter/Sort</h2>
       <div className="toy-filter">
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="name"
-          name="txt"
-          label="Name"
-          variant="outlined"
-          value={filterByToEdit.txt}
-          onChange={handleChange}
-        />
-
-        <TextField
-          id="maxPrice"
-          name="maxPrice"
-          label="Max Price"
-          type="number"
-          variant="outlined"
-          value={filterByToEdit.maxPrice || ''}
-          onChange={handleChange}
-        />
-
-        <FormControl variant="outlined" sx={{ m: 1, width: '25ch' }}>
-          <InputLabel id="inStock-label">In Stock</InputLabel>
-          <Select
-            labelId="inStock-label"
-            id="inStock"
-            name="inStock"
-            value={filterByToEdit.inStock ?? ''}
-            onChange={handleInStockChange}
-            label="In Stock"
-          >
-            <MenuItem value="">All</MenuItem>
-            <MenuItem value="true">In Stock</MenuItem>
-            <MenuItem value="false">Out of Stock</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" sx={{ m: 1, width: '25ch' }}>
-          <InputLabel id="labels-label">Labels</InputLabel>
-          <Select
-            labelId="labels-label"
-            id="labels"
-            name="labels"
-            multiple
-            value={filterByToEdit.labels || []}
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="name"
+            name="txt"
+            label="Name"
+            variant="outlined"
+            value={filterByToEdit.txt}
             onChange={handleChange}
-            label="Labels"
-          >
-            {toyService.getToyLabels().map((label) => (
-              <MenuItem key={label} value={label}>
-                {label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
+          />
+
+          <TextField
+            id="maxPrice"
+            name="maxPrice"
+            label="Max Price"
+            type="number"
+            variant="outlined"
+            value={filterByToEdit.maxPrice || ''}
+            onChange={handleChange}
+          />
+
+          <FormControl variant="outlined" sx={{ m: 1, width: '25ch' }}>
+            <InputLabel id="inStock-label">In Stock</InputLabel>
+            <Select
+              labelId="inStock-label"
+              id="inStock"
+              name="inStock"
+              value={filterByToEdit.inStock ?? ''}
+              onChange={handleInStockChange}
+              label="In Stock"
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="true">In Stock</MenuItem>
+              <MenuItem value="false">Out of Stock</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl variant="outlined" sx={{ m: 1, width: '25ch' }}>
+            <InputLabel id="labels-label">Labels</InputLabel>
+            <Select
+              labelId="labels-label"
+              id="labels"
+              name="labels"
+              multiple
+              value={filterByToEdit.labels || []}
+              onChange={handleChange}
+              label="Labels"
+            >
+              {toyService.getToyLabels().map((label) => (
+                <MenuItem key={label} value={label}>
+                  {label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+      <ToySort sortBy={sortBy} onSetSort={onSetSort} />
+        </Box>
       </div>
     </>
   )

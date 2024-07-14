@@ -166,25 +166,6 @@ $break-620: 620px; // New breakpoint variable
   }
 }
 
-// @mixin for-620px { 
-//   @media (max-width: $break-620) {
-//     @content;
-//   }
-// }
-
-
-// .header-container {
-
-
-//   h1 {
-
-
-//     @include for-620px { 
-//       font-size: 3.5rem; 
-//     }
-//   }
-// }
-
 @mixin for-620px { 
   @media (max-width: $break-620) {
     @content;
@@ -194,7 +175,7 @@ $break-620: 620px; // New breakpoint variable
 .header-container {
   h1 {
     @include for-620px { 
-      font-size: 3.5rem; 
+      font-size: 3rem; 
     }
   }
 }

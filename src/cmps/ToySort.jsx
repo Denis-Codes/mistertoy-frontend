@@ -1,38 +1,52 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 export function ToySort({ sortBy, onSetSort }) {
-  const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy })
+  const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy });
 
   useEffect(() => {
-    onSetSort(sortByToEdit)
-  }, [sortByToEdit])
+    onSetSort(sortByToEdit);
+  }, [sortByToEdit]);
 
-  function handleChange({ target }) {
-    const field = target.name
-    const value = target.type === 'number' ? +target.value : target.value
+  function handleChange(event) {
+    const { name, value } = event.target;
     setSortByToEdit(prevSort => ({
       ...prevSort,
-      [field]: field === 'desc' ? -prevSort.desc : value,
-    }))
+      [name]: name === 'desc' ? -prevSort.desc : value,
+    }));
   }
 
   return (
     <form className="toy-sort">
-      <select name="type" value={sortByToEdit.type} onChange={handleChange}>
-        <option value="">Sort by</option>
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-        <option value="createdAt">Date</option>
-      </select>
+      <FormControl variant="outlined" fullWidth>
+        <InputLabel>Sort by</InputLabel>
+        <Select
+          name="type"
+          value={sortByToEdit.type}
+          onChange={handleChange}
+          label="Sort by"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="price">Price</MenuItem>
+          <MenuItem value="createdAt">Date</MenuItem>
+        </Select>
+      </FormControl>
       <label>
-        <input
-          type="checkbox"
+        <Checkbox
           name="desc"
           checked={sortByToEdit.desc < 0}
           onChange={handleChange}
+          inputProps={{ 'aria-label': 'Descending' }}
         />
         Descending
       </label>
     </form>
-  )
+  );
 }
